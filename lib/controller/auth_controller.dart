@@ -37,6 +37,9 @@ class AuthController extends GetxController implements GetxService {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
+  bool _isLoadingLogin = false;
+  bool get isLoadingLogin => _isLoadingLogin;
+
   String _verificationCode = '';
 
   String get verificationCode => _verificationCode;
@@ -89,7 +92,7 @@ class AuthController extends GetxController implements GetxService {
   }
 
   Future<UserModel> login(String mobile, String otp) async {
-    _isLoading = true;
+    _isLoadingLogin = true;
     update();
     final http.Response response = await http.post(
       Uri.parse('${AppConstants.BASE_URL}${AppConstants.LOGIN_URI}'),
@@ -106,7 +109,7 @@ class AuthController extends GetxController implements GetxService {
       setSaveToken(_userModel!.token.toString());
       print("UserToken---------->" + _userModel!.token.toString());
       // print("UserToken2---------->" + getMyToken());
-      _isLoading = false;
+      _isLoadingLogin = false;
       // Get.find<LeaderController>().topUserData();
       // Get.find<QuizController>().getQuiz();
       // Get.find<UserController>().userData();

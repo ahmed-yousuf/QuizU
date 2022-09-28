@@ -463,8 +463,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                                             .toString());
                                                     Future.delayed(
                                                         Duration(
-                                                            microseconds: 400),
-                                                        () {
+                                                            microseconds:
+                                                                12400), () {
                                                       quizContoller
                                                           .setSelectedAnswer(
                                                               '');
@@ -520,9 +520,9 @@ class _QuizScreenState extends State<QuizScreen> {
                                                             .quizList[index].b
                                                             .toString());
                                                     Future.delayed(
-                                                        Duration(
-                                                            microseconds: 400),
-                                                        () {
+                                                        const Duration(
+                                                            microseconds:
+                                                                12400), () {
                                                       quizContoller
                                                           .setSelectedAnswer(
                                                               '');
@@ -582,9 +582,9 @@ class _QuizScreenState extends State<QuizScreen> {
                                                             .quizList[index].c
                                                             .toString());
                                                     Future.delayed(
-                                                        Duration(
-                                                            microseconds: 400),
-                                                        () {
+                                                        const Duration(
+                                                            microseconds:
+                                                                12400), () {
                                                       quizContoller
                                                           .setSelectedAnswer(
                                                               '');
@@ -639,9 +639,9 @@ class _QuizScreenState extends State<QuizScreen> {
                                                             .quizList[index].d
                                                             .toString());
                                                     Future.delayed(
-                                                        Duration(
-                                                            microseconds: 400),
-                                                        () {
+                                                        const Duration(
+                                                            microseconds:
+                                                                12400), () {
                                                       quizContoller
                                                           .setSelectedAnswer(
                                                               '');

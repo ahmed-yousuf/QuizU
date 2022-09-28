@@ -156,7 +156,7 @@ class LeaderboardScreen extends StatelessWidget {
                                           color: Color(0xFF8270F6),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(
-                                                  Dimensions.RADIUS_LARGE)),
+                                                  Dimensions.RADIUS_DEFAULT)),
                                           boxShadow: [
                                             BoxShadow(
                                                 color: Color(0xFF0F0D2388),
