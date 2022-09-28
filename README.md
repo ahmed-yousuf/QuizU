@@ -1,7 +1,7 @@
 ### Hi there 👋, this is be my Okoul challenge project in Flutter, I have done the project within Three Days Only I hope you like it 🥰.
 ![](https://github.com/ahmed-yousuf/QuizU/blob/main/assets/images/Banner1.png?raw=true)
 
-I made this project just for practice of UI / UX in Flutter, it allows you to create nice and simple UI I loved Flutter.
+I made this project to improve knowledge in Flutter, it allows you to create nice and simple app I ❤️ Flutter.
 
 - 🔭 I’m currently working as Flutter Developer. 
 - 🌱 I’m currently learning Laravel 😍. 
