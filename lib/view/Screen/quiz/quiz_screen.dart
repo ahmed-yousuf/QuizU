@@ -22,8 +22,7 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   bool _stopTimer = false;
   late CountdownTimerController controller;
-  int endTime =
-      DateTime.now().millisecondsSinceEpoch + 30000 + 30000 + 30000 + 30000;
+  int endTime = DateTime.now().millisecondsSinceEpoch + 30000;
   final ScrollController _scrollController = ScrollController();
   final PageController _pageController = PageController();
   final quizControll = Get.find<QuizController>();
@@ -239,10 +238,10 @@ class _QuizScreenState extends State<QuizScreen> {
                             style: poppinsBold.copyWith(
                                 fontSize: 18, color: Colors.white),
                           ),
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).primaryColor,
+                          decoration: const BoxDecoration(
+                              color: Color(0xFF8270F6),
                               borderRadius:
-                                  const BorderRadius.all(Radius.circular(5))),
+                                  BorderRadius.all(Radius.circular(5))),
                         ),
                       ),
                     ],
@@ -278,7 +277,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(
-                          height: 60,
+                          height: 20,
                         ),
                         SizedBox(
                           height: 80,
@@ -325,6 +324,7 @@ class _QuizScreenState extends State<QuizScreen> {
                             endTime: _stopTimer ? 0 : endTime,
                             onEnd: _stopTimer ? null : onEnd,
                             widgetBuilder: (_, CurrentRemainingTime? time) {
+                              // print("Time ------------>: " + time.toString());
                               if (time == null || !stopTime) {
                                 return Text(
                                   stopTime ? 'Time Stoped' : 'Game Over',
@@ -337,7 +337,11 @@ class _QuizScreenState extends State<QuizScreen> {
                                 style: poppinsBlack.copyWith(
                                     fontSize:
                                         Dimensions.FONT_SIZE_EXTRA_LARGE + 5,
-                                    color: Colors.white),
+                                    color: (time.min == null && time.sec! < 31)
+                                        ? (time.min == null && time.sec! < 11)
+                                            ? Colors.redAccent.shade400
+                                            : Colors.amber.shade500
+                                        : Colors.white),
                               );
                             },
                           ),
@@ -365,8 +369,9 @@ class _QuizScreenState extends State<QuizScreen> {
                               itemBuilder: (context, index) {
                                 return Column(
                                   children: [
-                                    SizedBox(
-                                      height: 220,
+                                    Container(
+                                      color: Colors.transparent,
+                                      height: Get.height * 0.220,
                                       child: ListView.builder(
                                           padding: EdgeInsets.zero,
                                           itemCount: 1,
@@ -403,7 +408,8 @@ class _QuizScreenState extends State<QuizScreen> {
                                       height: 20,
                                     ),
                                     Container(
-                                      height: 220,
+                                      height: Get.height * 0.250,
+                                      color: Colors.transparent,
                                       padding: const EdgeInsets.all(8.0),
                                       child: Column(
                                         children: [
@@ -455,6 +461,14 @@ class _QuizScreenState extends State<QuizScreen> {
                                                         quizContoller
                                                             .quizList[index].a
                                                             .toString());
+                                                    Future.delayed(
+                                                        Duration(
+                                                            microseconds: 400),
+                                                        () {
+                                                      quizContoller
+                                                          .setSelectedAnswer(
+                                                              '');
+                                                    });
                                                     // quizContoller.setSelectedAnswer('');
                                                   },
                                                 ),
@@ -505,6 +519,14 @@ class _QuizScreenState extends State<QuizScreen> {
                                                         quizContoller
                                                             .quizList[index].b
                                                             .toString());
+                                                    Future.delayed(
+                                                        Duration(
+                                                            microseconds: 400),
+                                                        () {
+                                                      quizContoller
+                                                          .setSelectedAnswer(
+                                                              '');
+                                                    });
                                                     // quizContoller.setSelectedAnswer('');
                                                   },
                                                 ),
@@ -528,13 +550,13 @@ class _QuizScreenState extends State<QuizScreen> {
                                                                         .charC),
                                                                 fit: BoxFit
                                                                     .cover),
-                                                        color: quizContoller
+                                                        color: (quizContoller
                                                                     .selectedAnswer ==
                                                                 quizContoller
                                                                     .quizList[
                                                                         index]
                                                                     .c
-                                                                    .toString()
+                                                                    .toString())
                                                             ? const Color(
                                                                 0xFFFF6DAA)
                                                             : const Color(
@@ -559,7 +581,14 @@ class _QuizScreenState extends State<QuizScreen> {
                                                         quizContoller
                                                             .quizList[index].c
                                                             .toString());
-                                                    // quizContoller.setSelectedAnswer('');
+                                                    Future.delayed(
+                                                        Duration(
+                                                            microseconds: 400),
+                                                        () {
+                                                      quizContoller
+                                                          .setSelectedAnswer(
+                                                              '');
+                                                    });
                                                   },
                                                 ),
                                               ),
@@ -609,6 +638,14 @@ class _QuizScreenState extends State<QuizScreen> {
                                                         quizContoller
                                                             .quizList[index].d
                                                             .toString());
+                                                    Future.delayed(
+                                                        Duration(
+                                                            microseconds: 400),
+                                                        () {
+                                                      quizContoller
+                                                          .setSelectedAnswer(
+                                                              '');
+                                                    });
                                                     // quizContoller.setSelectedAnswer('');
                                                   },
                                                 ),
@@ -622,17 +659,13 @@ class _QuizScreenState extends State<QuizScreen> {
                                 );
                               }),
                         ),
-                        Column(
-                          children: [
-                            Text(
-                              'Select a correct answer !',
-                              style: poppinsRegular.copyWith(
-                                  fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
-                                  color: Colors.white70),
-                            )
-                          ],
+                        Text(
+                          'Select a correct answer !',
+                          style: poppinsRegular.copyWith(
+                              fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                              color: Colors.white70),
                         ),
-                        const Spacer(),
+                        // const Spacer(),
                         Container(
                           alignment: Alignment.bottomCenter,
                           child: CustomButton(
@@ -657,7 +690,7 @@ class _QuizScreenState extends State<QuizScreen> {
                             },
                           ),
                         ),
-                        const Spacer(),
+                        // const Spacer(),
                       ],
                     ),
                   )

@@ -11,7 +11,7 @@ class UserController extends GetxController implements GetxService {
   UserDataModel? _userDataModel;
   UserDataModel? get userDataModel => _userDataModel;
 
-  final String _myToken = Get.find<AuthController>().myToken;
+  final String _myToken = Get.find<AuthController>().getMyToken();
 
   Future userData() async {
     _isLoading = true;
@@ -25,12 +25,12 @@ class UserController extends GetxController implements GetxService {
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       _userDataModel = UserDataModel.fromJson(json.decode(response.body));
+      print('User DATA Name ------->' + _userDataModel!.name.toString());
+
       _isLoading = false;
       update();
       return UserDataModel.fromJson(json.decode(response.body));
     } else if (response.statusCode == 401) {
-      // print('Error Infoooo new ------->');
-
       update();
     } else {
       throw Exception('Token vaild failed!');

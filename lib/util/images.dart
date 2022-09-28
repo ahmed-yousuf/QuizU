@@ -11,6 +11,8 @@ class Images {
   static const String win = 'assets/images/confetti.json';
   static const String win2 = 'assets/images/confetti2.json';
   static const String win3 = 'assets/images/confetti3.json';
+  static const String win4 = 'assets/images/confetti4.json';
+
   static const String charA = 'assets/images/char-a.png';
   static const String charB = 'assets/images/char-b.png';
   static const String charC = 'assets/images/char-c.png';

@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:lottie/lottie.dart';
 import 'package:quizu/controller/auth_controller.dart';
 import 'package:quizu/controller/quize_controller.dart';
+import 'package:quizu/controller/user_controller.dart';
 import 'package:quizu/helper/route_helper.dart';
 import 'package:quizu/util/images.dart';
 import 'package:quizu/util/styles.dart';
@@ -70,10 +71,15 @@ class _WinScreenState extends State<WinScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height: 350,
+            height: Get.height * 0.350,
             width: Get.width,
             child: Stack(
               children: [
+                Positioned(
+                  right: 0,
+                  left: 0,
+                  child: Lottie.asset(Images.win4),
+                ),
                 Positioned(
                   right: 0,
                   left: 0,
@@ -97,7 +103,10 @@ class _WinScreenState extends State<WinScreen> {
                               color: Colors.white, fontSize: 34),
                         ),
                         Text(
-                          Get.find<AuthController>().getSaveName(),
+                          Get.find<UserController>()
+                              .userDataModel!
+                              .name
+                              .toString(),
                           style: poppinsBold.copyWith(
                               color: Colors.amber, fontSize: 24),
                         ),

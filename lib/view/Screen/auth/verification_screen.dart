@@ -4,6 +4,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quizu/controller/auth_controller.dart';
+import 'package:quizu/controller/leader_controller.dart';
+import 'package:quizu/controller/quize_controller.dart';
 import 'package:quizu/controller/user_controller.dart';
 import 'package:quizu/helper/route_helper.dart';
 import 'package:quizu/util/dimensions.dart';
@@ -25,6 +27,8 @@ class VerificationScreen extends StatefulWidget {
 }
 
 class _VerificationScreenState extends State<VerificationScreen> {
+  int isClicked = 0;
+
   final FocusNode _firstNameFocus = FocusNode();
   final TextEditingController _firstNameController = TextEditingController();
 
@@ -135,128 +139,143 @@ class _VerificationScreenState extends State<VerificationScreen> {
                           buttonText: 'Verify',
                           textColor: Colors.white,
                           onPressed: () {
-                            authController
-                                .login(_number, authController.verificationCode)
-                                .then((value) {
-                              if (value.success ?? false) {
-                                // print(
-                                //     "skjdgckjdk ----" + value.name.toString());
-                                authController
-                                    .setUserName(value.name.toString());
-                                authController
-                                    .setUserNumber(value.mobile.toString());
+                            isClicked++;
 
-                                if (value.name == null) {
-                                  Get.bottomSheet(
-                                    Container(
-                                        height: Get.height * 2,
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                            color: Colors.grey[200],
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(20),
-                                                    topRight:
-                                                        Radius.circular(20))),
-                                        padding: const EdgeInsets.all(Dimensions
-                                            .PADDING_SIZE_EXTRA_LARGE),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'Please Enter your name:',
-                                              style: poppinsRegular.copyWith(
-                                                fontSize: 18,
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            CustomTextField(
-                                              isNote: true,
-                                              hintText: 'Name',
-                                              controller: _firstNameController,
-                                              focusNode: _firstNameFocus,
-                                              inputType: TextInputType.name,
-                                              capitalization:
-                                                  TextCapitalization.words,
-                                              divider: true,
-                                            ),
-                                            GetBuilder<AuthController>(
-                                                builder: (authController) {
-                                              return CustomButton(
-                                                  buttonText: 'Save Name',
-                                                  transparent: true,
-                                                  buttonColor: Theme.of(context)
-                                                      .primaryColor,
-                                                  textColor: Colors.white,
-                                                  onPressed: () {
-                                                    if (_firstNameController
-                                                        .text.isNotEmpty) {
-                                                      // print(_firstNameController
-                                                      //     .text);
-                                                      authController
-                                                          .updateName(
-                                                              _firstNameController
-                                                                  .text)
-                                                          .then((value) {
-                                                        if (value.success ??
-                                                            false) {
-                                                          // print(value.message
-                                                          //     .toString());
-                                                          Get.find<
-                                                                  AuthController>()
-                                                              .setUserName(value
-                                                                  .name
-                                                                  .toString());
-                                                          showCustomSnackBar(
-                                                              value.message
-                                                                  .toString(),
-                                                              context,
-                                                              isError: false);
-                                                          Get.offNamed(RouteHelper
-                                                              .getInitialRoute());
-                                                        } else {
-                                                          showCustomSnackBar(
-                                                              'Please Enter your name!!',
-                                                              context,
-                                                              isError: true);
-                                                          // Get.offNamed(RouteHelper.getInitialRoute());
-                                                        }
-                                                      });
-                                                    } else {
-                                                      showCustomSnackBar(
-                                                          'Please Enter your name!!',
-                                                          context,
-                                                          isError: true);
-                                                    }
-                                                  });
-                                            })
-                                          ],
-                                        )),
+                            if (isClicked == 1) {
+                              print('sfjkbvdkfjbvdsfkljbvldf----------');
 
-                                    barrierColor: Colors.black.withOpacity(0.5),
-                                    isDismissible: false,
-
-                                    // shape: RoundedRectangleBorder(
-                                    //   borderRadius: BorderRadius.circular(35),
-                                    // ),
-                                    enableDrag: true,
-                                  );
-                                } else if (value.name != null) {
-                                  // HomeScreen.loadData(true);
+                              authController
+                                  .login(
+                                      _number, authController.verificationCode)
+                                  .then((value) {
+                                if (value.success ?? false) {
+                                  Get.find<LeaderController>().topUserData();
+                                  Get.find<QuizController>().getQuiz();
                                   Get.find<UserController>().userData();
-                                  Get.offNamed(RouteHelper.getInitialRoute());
+                                  // print(
+                                  //     "skjdgckjdk ----" + value.name.toString());
+                                  authController
+                                      .setUserName(value.name.toString());
+                                  authController
+                                      .setUserNumber(value.mobile.toString());
+
+                                  if (value.name == null) {
+                                    Get.bottomSheet(
+                                      Container(
+                                          height: Get.height * 2,
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[200],
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(20),
+                                                      topRight:
+                                                          Radius.circular(20))),
+                                          padding: const EdgeInsets.all(
+                                              Dimensions
+                                                  .PADDING_SIZE_EXTRA_LARGE),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'Please Enter your name:',
+                                                style: poppinsRegular.copyWith(
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                              CustomTextField(
+                                                isNote: true,
+                                                hintText: 'Name',
+                                                controller:
+                                                    _firstNameController,
+                                                focusNode: _firstNameFocus,
+                                                inputType: TextInputType.name,
+                                                capitalization:
+                                                    TextCapitalization.words,
+                                                divider: true,
+                                              ),
+                                              GetBuilder<AuthController>(
+                                                  builder: (authController) {
+                                                return CustomButton(
+                                                    buttonText: 'Save Name',
+                                                    transparent: true,
+                                                    buttonColor:
+                                                        Theme.of(context)
+                                                            .primaryColor,
+                                                    textColor: Colors.white,
+                                                    onPressed: () {
+                                                      if (_firstNameController
+                                                          .text.isNotEmpty) {
+                                                        print(
+                                                            _firstNameController
+                                                                .text);
+                                                        authController
+                                                            .updateName(
+                                                                _firstNameController
+                                                                    .text)
+                                                            .then((value) {
+                                                          if (value.success ??
+                                                              false) {
+                                                            // print(value.message
+                                                            //     .toString());
+                                                            // Get.find<
+                                                            //         AuthController>()
+                                                            //     .setUserName(value
+                                                            //         .name
+                                                            //         .toString());
+                                                            showCustomSnackBar(
+                                                                value.message
+                                                                    .toString(),
+                                                                context,
+                                                                isError: false);
+                                                            Get.offNamed(RouteHelper
+                                                                .getInitialRoute());
+                                                          } else {
+                                                            showCustomSnackBar(
+                                                                'Please Enter your name!',
+                                                                context,
+                                                                isError: true);
+                                                            // Get.offNamed(RouteHelper.getInitialRoute());
+                                                          }
+                                                        });
+                                                      } else {
+                                                        showCustomSnackBar(
+                                                            'Please Enter your name!!',
+                                                            context,
+                                                            isError: true);
+                                                      }
+                                                    });
+                                              })
+                                            ],
+                                          )),
+
+                                      barrierColor:
+                                          Colors.black.withOpacity(0.5),
+                                      isDismissible: false,
+
+                                      // shape: RoundedRectangleBorder(
+                                      //   borderRadius: BorderRadius.circular(35),
+                                      // ),
+                                      enableDrag: true,
+                                    );
+                                  } else if (value.name != null) {
+                                    // HomeScreen.loadData(true);
+                                    Get.find<UserController>().userData();
+                                    Get.offNamed(RouteHelper.getInitialRoute());
+                                  }
+                                } else {
+                                  showCustomSnackBar(
+                                    'Your OTP is invalid',
+                                    context,
+                                  );
                                 }
-                              } else {
-                                showCustomSnackBar(
-                                  'Your OTP is invalid',
-                                  context,
-                                );
-                              }
-                            });
+                              });
+                            }
                           },
                         )
                       : const SizedBox.shrink(),

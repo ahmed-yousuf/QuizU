@@ -1,10 +1,13 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quizu/util/dimensions.dart';
 import 'package:quizu/view/base/loading.dart';
 
 class CustomLoader extends StatelessWidget {
-  const CustomLoader({Key? key}) : super(key: key);
+  final Color bgColor;
+  const CustomLoader({this.bgColor = Colors.black});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,7 @@ class CustomLoader extends StatelessWidget {
       height: Get.height,
       width: Get.width,
       decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.5),
+          color: bgColor.withOpacity(0.5),
           borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL)),
       alignment: Alignment.center,
       child: const LoadingLottie(

@@ -153,7 +153,7 @@ class QuizController extends GetxController implements GetxService {
     return false;
   }
 
-  final String _myToken = Get.find<AuthController>().myToken;
+  final String _myToken = Get.find<AuthController>().getMyToken();
 
   Future getQuiz() async {
     _isLoading = true;

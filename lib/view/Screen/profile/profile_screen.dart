@@ -483,7 +483,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       ),
                                       const Center(
                                         child: LoadingLottie(
-                                          height: 150,
+                                          height: 100,
                                         ),
                                       ),
                                     ],
@@ -495,56 +495,76 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       itemCount: quizController.records.length,
                                       separatorBuilder: (__, _) =>
                                           const SizedBox(height: 15),
-                                      itemBuilder: (context, index) =>
-                                          Container(
-                                            alignment: Alignment.center,
-                                            height: 90,
-                                            margin: const EdgeInsets.symmetric(
-                                                horizontal: Dimensions
-                                                    .PADDING_SIZE_EXTRA_SMALL),
-                                            decoration: BoxDecoration(
-                                                color: Get.isDarkMode
-                                                    ? Colors.grey[800]
-                                                    : Colors.white,
+                                      itemBuilder: (context, index) {
+                                        var reverselist = quizController
+                                            .records.reversed
+                                            .toList();
+                                        return Container(
+                                          alignment: Alignment.center,
+                                          height: 90,
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: Dimensions
+                                                  .PADDING_SIZE_EXTRA_SMALL),
+                                          decoration: BoxDecoration(
+                                              color: Get.isDarkMode
+                                                  ? Colors.grey[800]
+                                                  : Colors.white,
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(Dimensions
+                                                          .RADIUS_LARGE)),
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                    color: Color(0xFF0F0D2388),
+                                                    offset: Offset(10, 24),
+                                                    blurRadius: 54)
+                                              ]),
+                                          child: ListTile(
+                                            leading: Container(
+                                              alignment: Alignment.center,
+                                              // padding:
+                                              // EdgeInsets.symmetric(vertical: 20),
+                                              // margin: const EdgeInsets.all(8),
+                                              // height: 80,
+                                              width: 60,
+                                              decoration: BoxDecoration(
+                                                color: lController
+                                                    .listColor[index],
                                                 borderRadius:
                                                     const BorderRadius.all(
-                                                        Radius.circular(
-                                                            Dimensions
-                                                                .RADIUS_LARGE)),
-                                                boxShadow: const [
-                                                  BoxShadow(
-                                                      color:
-                                                          Color(0xFF0F0D2388),
-                                                      offset: Offset(10, 24),
-                                                      blurRadius: 54)
-                                                ]),
-                                            child: ListTile(
-                                              leading: Container(
-                                                alignment: Alignment.center,
-                                                // padding:
-                                                // EdgeInsets.symmetric(vertical: 20),
-                                                // margin: const EdgeInsets.all(8),
-                                                // height: 80,
-                                                width: 60,
-                                                decoration: BoxDecoration(
-                                                  color: lController
-                                                      .listColor[index],
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                          Radius.circular(8)),
-                                                ),
-                                                child: Text(
-                                                  '${index + 1}',
-                                                  style: poppinsBold.copyWith(
-                                                      fontSize: Dimensions
-                                                          .FONT_SIZE_EXTRA_LARGE,
-                                                      color: Theme.of(context)
-                                                          .cardColor),
-                                                ),
+                                                        Radius.circular(8)),
                                               ),
-                                              title: Text(
-                                                quizController
-                                                    .records[index].time
+                                              child: Text(
+                                                '${index + 1}',
+                                                style: poppinsBold.copyWith(
+                                                    fontSize: Dimensions
+                                                        .FONT_SIZE_EXTRA_LARGE,
+                                                    color: Theme.of(context)
+                                                        .cardColor),
+                                              ),
+                                            ),
+                                            title: Text(
+                                              reverselist[index]
+                                                  .time
+                                                  .toString(),
+                                              style: poppinsBold.copyWith(
+                                                  fontSize: Dimensions
+                                                      .FONT_SIZE_EXTRA_LARGE,
+                                                  color: Get.isDarkMode
+                                                      ? Colors.white
+                                                      : Colors.black),
+                                            ),
+                                            trailing: Container(
+                                              padding: const EdgeInsets.all(8),
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(
+                                                      width: 5,
+                                                      color: lController
+                                                          .listColor[index])),
+                                              child: Text(
+                                                reverselist[index]
+                                                    .record
                                                     .toString(),
                                                 style: poppinsBold.copyWith(
                                                     fontSize: Dimensions
@@ -553,29 +573,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                         ? Colors.white
                                                         : Colors.black),
                                               ),
-                                              trailing: Container(
-                                                padding:
-                                                    const EdgeInsets.all(8),
-                                                decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    border: Border.all(
-                                                        width: 5,
-                                                        color: lController
-                                                            .listColor[index])),
-                                                child: Text(
-                                                  quizController
-                                                      .records[index].record
-                                                      .toString(),
-                                                  style: poppinsBold.copyWith(
-                                                      fontSize: Dimensions
-                                                          .FONT_SIZE_EXTRA_LARGE,
-                                                      color: Get.isDarkMode
-                                                          ? Colors.white
-                                                          : Colors.black),
-                                                ),
-                                              ),
                                             ),
-                                          )),
+                                          ),
+                                        );
+                                      }),
                                 )
                               ],
                             ),

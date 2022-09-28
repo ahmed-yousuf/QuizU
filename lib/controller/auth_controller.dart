@@ -5,7 +5,9 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:quizu/controller/leader_controller.dart';
 import 'package:quizu/controller/quize_controller.dart';
+import 'package:quizu/controller/user_controller.dart';
 import 'package:quizu/data/api/client_helper.dart';
 import 'package:quizu/data/model/user_info_model.dart';
 import 'package:quizu/data/model/user_model.dart';
@@ -82,9 +84,9 @@ class AuthController extends GetxController implements GetxService {
     if (_saveToken.read(AppConstants.TOKEN) == null) {
       return _myToken = '';
     } else {
-      _myToken = _saveToken.read(AppConstants.TOKEN);
+      return _myToken = _saveToken.read(AppConstants.TOKEN);
     }
-    return _myToken;
+    //  _myToken;
   }
 
   Future<UserModel> login(String mobile, String otp) async {
@@ -103,10 +105,12 @@ class AuthController extends GetxController implements GetxService {
     if (response.statusCode == 201) {
       _userModel = UserModel.fromJson(json.decode(response.body));
       setSaveToken(_userModel!.token.toString());
-      setUserName(_userModel!.name.toString());
-      // print("UserToken---------->" + _userModel!.token.toString());
+      print("UserToken---------->" + _userModel!.token.toString());
       // print("UserToken2---------->" + getMyToken());
       _isLoading = false;
+      // Get.find<LeaderController>().topUserData();
+      // Get.find<QuizController>().getQuiz();
+      // Get.find<UserController>().userData();
       update();
 
       return UserModel.fromJson(json.decode(response.body));
@@ -134,12 +138,14 @@ class AuthController extends GetxController implements GetxService {
       }),
     );
     if (response.statusCode == 201) {
-      // final data = jsonDecode(response.body);
-      // print('UserInfoModel ------->' + data.toString());
+      final data = jsonDecode(response.body);
+      print('UserInfoModel ------->' + data.toString());
+
       _userModel = UserModel.fromJson(json.decode(response.body));
       _isLoading = false;
       update();
       setSaveToken(_userModel!.token.toString());
+      Get.find<UserController>().userData();
 
       return UserInfoModel.fromJson(json.decode(response.body));
     } else if (response.statusCode == 401) {
@@ -173,7 +179,7 @@ class AuthController extends GetxController implements GetxService {
   Future<ResponseModel> verfiyToken() async {
     _isLoading = true;
     update();
-    // print("ResponseModel" + _myToken.toString());
+    print("MyToken----->" + _myToken.toString());
     final http.Response response = await http.get(
       Uri.parse('${AppConstants.BASE_URL}${AppConstants.VERIFY_TOKEN_URI}'),
       headers: <String, String>{
@@ -201,11 +207,10 @@ class AuthController extends GetxController implements GetxService {
 
   void logout() {
     setSaveToken('');
-    setUserName('');
-    update();
     Get.find<QuizController>().clearRecord();
     Get.find<QuizController>().resetAttmpts();
     Get.offNamed(RouteHelper.getSignInRoute('sign'));
+    update();
   }
 
   @override

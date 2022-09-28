@@ -13,7 +13,7 @@ class LeaderController extends GetxController implements GetxService {
   List<UserTopModel>? _userTopList;
   List<UserTopModel>? get topUserList => _userTopList;
   UserTopModel get topUserModel => _topUserModel!;
-  final String _myToken = Get.find<AuthController>().myToken;
+  String _myToken = Get.find<AuthController>().getMyToken();
 
   Future topUserData() async {
     _isLoading = true;
@@ -28,13 +28,14 @@ class LeaderController extends GetxController implements GetxService {
     if (response.statusCode == 200) {
       // final data = jsonDecode(response.body);
       Iterable data = json.decode(response.body);
-      // print('Leadder Infoooo new ------->' + data.toString());
+      print('Leadder Infoooo  ------->' + data.toString());
       _userTopList = List<UserTopModel>.from(
           data.map((model) => UserTopModel.fromJson(model)));
       _isLoading = false;
       update();
       // return _userTopList;
     } else if (response.statusCode == 401) {
+      print("Error ---------> Loading Leader Board!!! ");
       // _topUserModel = TopUserModel.fromJson(json.decode(response.body));
 
     } else {
