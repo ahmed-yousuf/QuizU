@@ -151,6 +151,7 @@ class _SignInScreenState extends State<SignInScreen> {
         context,
       );
     } else {
+      print("User TextField -------->" + _numberWithCountryCode);
       Get.toNamed(RouteHelper.getVerificationRoute(
           false, _numberWithCountryCode, RouteHelper.signIn));
     }

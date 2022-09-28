@@ -13,7 +13,6 @@ class LeaderController extends GetxController implements GetxService {
   List<UserTopModel>? _userTopList;
   List<UserTopModel>? get topUserList => _userTopList;
   UserTopModel get topUserModel => _topUserModel!;
-  String _myToken = Get.find<AuthController>().getMyToken();
 
   Future topUserData() async {
     _isLoading = true;
@@ -22,7 +21,7 @@ class LeaderController extends GetxController implements GetxService {
       Uri.parse('${AppConstants.BASE_URL}${AppConstants.TOP_TEN_SCORES_URI}'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $_myToken'
+        'Authorization': 'Bearer ${Get.find<AuthController>().getMyToken()}'
       },
     );
     if (response.statusCode == 200) {

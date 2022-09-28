@@ -9,7 +9,19 @@ import 'package:quizu/util/styles.dart';
 import 'package:quizu/view/base/custom_loader.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+
+  DateTime now = new DateTime.now();
+  String timeWellcome(int hour) {
+    if (1 <= hour && hour < 12 || 24 == hour) {
+      return "Good Morning";
+    } else if (12 <= hour && hour < 18) {
+      return "Good Afternoon";
+    } else if (17 < hour && hour < 24) {
+      return "Good Evening";
+    }
+    return "";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +31,7 @@ class HomeScreen extends StatelessWidget {
         bottom: true,
         top: false,
         child: GetBuilder<UserController>(builder: (userController) {
+          final welcome = timeWellcome(now.hour);
           return !userController.isLoading
               ? Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -43,13 +56,13 @@ class HomeScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Welcome Back',
-                                  style: poppinsRegular.copyWith(
+                                  '$welcome,',
+                                  style: poppinsMedium.copyWith(
                                       fontSize: Dimensions.FONT_SIZE_LARGE,
                                       color: Colors.white),
                                 ),
                                 Text(
-                                  userController.userDataModel!.name ?? "",
+                                  userController.userDataModel!.name.toString(),
                                   style: poppinsBold.copyWith(
                                       fontSize:
                                           Dimensions.FONT_SIZE_EXTRA_LARGE + 5,

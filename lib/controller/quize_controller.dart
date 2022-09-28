@@ -153,7 +153,7 @@ class QuizController extends GetxController implements GetxService {
     return false;
   }
 
-  final String _myToken = Get.find<AuthController>().getMyToken();
+  // final String _myToken = Get.find<AuthController>().getMyToken();
 
   Future getQuiz() async {
     _isLoading = true;
@@ -162,7 +162,7 @@ class QuizController extends GetxController implements GetxService {
       Uri.parse('${AppConstants.BASE_URL}${AppConstants.QUESTIONS_URI}'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $_myToken'
+        'Authorization': 'Bearer ${Get.find<AuthController>().getMyToken()}'
       },
     );
     if (response.statusCode == 200) {
@@ -187,7 +187,7 @@ class QuizController extends GetxController implements GetxService {
       Uri.parse('${AppConstants.BASE_URL}${AppConstants.POST_SCORE_URI}'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $_myToken'
+        'Authorization': 'Bearer ${Get.find<AuthController>().getMyToken()}'
       },
       body: jsonEncode(<String, String>{'score': "$_scores"}),
     );

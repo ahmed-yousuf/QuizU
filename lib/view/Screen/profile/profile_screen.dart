@@ -32,6 +32,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController _firstNameController = TextEditingController();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GetBuilder<QuizController>(builder: (quizController) {
@@ -239,7 +245,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ),
                                       onTap: () {
-                                        isClicked = 0;
+                                        setState(() {
+                                          isClicked++;
+                                        });
                                         Get.bottomSheet(
                                           Container(
                                               height: Get.height * 2,
@@ -297,27 +305,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                             Theme.of(context)
                                                                 .primaryColor,
                                                         textColor: Colors.white,
-                                                        onPressed: () {
+                                                        onPressed: () async {
                                                           if (_firstNameController
-                                                              .text
-                                                              .isNotEmpty) {
+                                                                  .text
+                                                                  .isNotEmpty &&
+                                                              isClicked == 1) {
                                                             // print(
                                                             //     _firstNameController
                                                             //         .text);
+                                                            // if (isClicked ==
+                                                            //     1) {
+
+                                                            //     }
+
                                                             authController
                                                                 .updateName(
                                                                     _firstNameController
-                                                                        .text)
+                                                                        .text
+                                                                        .toString())
                                                                 .then((value) {
                                                               if (value
                                                                       .success ??
                                                                   false) {
-                                                                isClicked++;
+                                                                _firstNameController
+                                                                    .clear();
+
                                                                 // print(value
                                                                 //     .message
                                                                 //     .toString());
+
                                                                 userController
                                                                     .userData();
+
                                                                 showCustomSnackBar(
                                                                     value
                                                                         .message
@@ -326,13 +345,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                     isError:
                                                                         false);
 
-                                                                if (isClicked ==
-                                                                    1) {
-                                                                  // print(
-                                                                  //     'object ------>$isClicked');
-                                                                  Navigator.pop(
-                                                                      context);
-                                                                }
+                                                                userController
+                                                                    .setLoadingValue(
+                                                                        false);
+                                                                isClicked = 0;
+                                                                // print(
+                                                                //     'object ------>$isClicked');
+                                                                Navigator.pop(
+                                                                    context);
+
+                                                                // Get.offNamed(
+                                                                //     RouteHelper
+                                                                //         .getInitialRoute());
 
                                                                 // Get.offNamed(RouteHelper
                                                                 //     .getInitialRoute());
@@ -341,7 +365,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                                                               } else {
                                                                 showCustomSnackBar(
-                                                                    'Please Enter your name!!',
+                                                                    'Please Enter your name!',
                                                                     context,
                                                                     isError:
                                                                         true);
@@ -353,6 +377,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                                 'Please Enter your name!!',
                                                                 context,
                                                                 isError: true);
+                                                            setState(() {
+                                                              isClicked = 0;
+                                                            });
                                                           }
                                                         });
                                                   })
@@ -421,8 +448,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   Get.find<AuthController>()
                                                       .logout();
                                                   Get.offAllNamed(RouteHelper
-                                                      .getSignInRoute(
-                                                          RouteHelper.splash));
+                                                      .getSignInRoute('Login'));
                                                 }),
                                             useSafeArea: false);
                                       },

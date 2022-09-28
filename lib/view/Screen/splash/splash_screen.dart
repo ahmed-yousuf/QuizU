@@ -90,7 +90,9 @@ class _SplashScreenState extends State<SplashScreen> {
                     height: Get.height * 2,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        color: Colors.grey[200],
+                        color: Get.isDarkMode
+                            ? Colors.grey[850]
+                            : Colors.grey[200],
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20))),

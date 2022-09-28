@@ -86,9 +86,24 @@ class AuthController extends GetxController implements GetxService {
     if (_saveToken.read(AppConstants.TOKEN) == null) {
       return _myToken = '';
     } else {
-      return _myToken = _saveToken.read(AppConstants.TOKEN);
+      _myToken = _saveToken.read(AppConstants.TOKEN);
+      update();
+      return _saveToken.read(AppConstants.TOKEN);
     }
     //  _myToken;
+  }
+
+  void logout() {
+    _myToken = '';
+    setSaveToken('');
+
+    Get.find<QuizController>().clearRecord();
+    Get.find<QuizController>().resetAttmpts();
+    Get.offNamed(RouteHelper.getSignInRoute('sign'));
+    print("UserToken---------->" + _myToken.toString());
+    print("UserToken-getMyToken--------->" + getMyToken());
+
+    update();
   }
 
   Future<UserModel> login(String mobile, String otp) async {
@@ -106,8 +121,8 @@ class AuthController extends GetxController implements GetxService {
     );
     if (response.statusCode == 201) {
       _userModel = UserModel.fromJson(json.decode(response.body));
-      setSaveToken(_userModel!.token.toString());
-      print("UserToken---------->" + _userModel!.token.toString());
+      // setSaveToken(_userModel!.token.toString());
+      print("UserToken---------->" + getMyToken());
       // print("UserToken2---------->" + getMyToken());
       _isLoadingLogin = false;
       // Get.find<LeaderController>().topUserData();
@@ -128,54 +143,33 @@ class AuthController extends GetxController implements GetxService {
   ) async {
     _isLoading = true;
     update();
-    // print(_myToken);
+    print("User My Update Nmae token New" + getMyToken());
     final http.Response response = await http.post(
       Uri.parse('${AppConstants.BASE_URL}${AppConstants.UPDATE_USER_NAME_URI}'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $_myToken'
+        'Authorization': 'Bearer ${_myToken}'
       },
       body: jsonEncode(<String, String>{
         'name': name,
       }),
     );
-    if (response.statusCode == 201) {
+    if (response.statusCode == 201 || response.statusCode == 200) {
       final data = jsonDecode(response.body);
       print('UserInfoModel ------->' + data.toString());
 
       _userModel = UserModel.fromJson(json.decode(response.body));
       _isLoading = false;
-      update();
-      setSaveToken(_userModel!.token.toString());
-      Get.find<UserController>().userData();
 
+      // setSaveToken(_userModel!.token.toString());
+      Get.find<UserController>().userData();
+      update();
       return UserInfoModel.fromJson(json.decode(response.body));
     } else if (response.statusCode == 401) {
       return UserInfoModel.fromJson(json.decode(response.body));
     } else {
       throw Exception('Update name failed!');
     }
-  }
-
-  Future<bool> getTokenVerify() async {
-    _isLoading = true;
-    update();
-    final response = await ClientHelper.getData(
-        '${AppConstants.BASE_URL}${AppConstants.VERIFY_TOKEN_URI}', _myToken);
-    try {
-      final data = jsonDecode(response!.body);
-
-      _responseModel = ResponseModel.fromJson(data);
-      _isLoading = false;
-      update();
-      return _responseModel!.success ?? false;
-    } catch (e) {
-      log(e.toString());
-    }
-
-    return _responseModel!.success == null
-        ? false
-        : _responseModel!.success ?? false;
   }
 
   Future<ResponseModel> verfiyToken() async {
@@ -186,7 +180,7 @@ class AuthController extends GetxController implements GetxService {
       Uri.parse('${AppConstants.BASE_URL}${AppConstants.VERIFY_TOKEN_URI}'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $_myToken'
+        'Authorization': 'Bearer ${getMyToken()}'
       },
     );
     if (response.statusCode == 200) {
@@ -205,14 +199,6 @@ class AuthController extends GetxController implements GetxService {
       update();
       throw Exception('Token vaild failed!');
     }
-  }
-
-  void logout() {
-    setSaveToken('');
-    Get.find<QuizController>().clearRecord();
-    Get.find<QuizController>().resetAttmpts();
-    Get.offNamed(RouteHelper.getSignInRoute('sign'));
-    update();
   }
 
   @override

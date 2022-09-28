@@ -11,7 +11,12 @@ class UserController extends GetxController implements GetxService {
   UserDataModel? _userDataModel;
   UserDataModel? get userDataModel => _userDataModel;
 
-  final String _myToken = Get.find<AuthController>().getMyToken();
+  void setLoadingValue(bool val) {
+    _isLoading = val;
+    update();
+  }
+
+  // final String _myToken = Get.find<AuthController>().getMyToken();
 
   Future userData() async {
     _isLoading = true;
@@ -20,12 +25,14 @@ class UserController extends GetxController implements GetxService {
       Uri.parse('${AppConstants.BASE_URL}${AppConstants.USER_INFO_URI}'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $_myToken'
+        'Authorization': 'Bearer ${Get.find<AuthController>().getMyToken()}'
       },
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       _userDataModel = UserDataModel.fromJson(json.decode(response.body));
+      print("UserToken---------->" + Get.find<AuthController>().getMyToken());
       print('User DATA Name ------->' + _userDataModel!.name.toString());
+      print('User DATA Name ------->' + _userDataModel!.mobile.toString());
 
       _isLoading = false;
       update();
