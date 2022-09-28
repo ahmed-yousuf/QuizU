@@ -375,7 +375,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                       child: ListView.builder(
                                           padding: EdgeInsets.zero,
                                           itemCount: 1,
-                                          itemBuilder: ((context, index) {
+                                          itemBuilder: ((context, i) {
                                             return Container(
                                               alignment: Alignment.center,
                                               // padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),

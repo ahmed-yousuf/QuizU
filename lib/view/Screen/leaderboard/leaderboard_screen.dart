@@ -14,6 +14,7 @@ class LeaderboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF8270F6),
       body: GetBuilder<LeaderController>(builder: (lController) {
         return SizedBox(
           child: Container(

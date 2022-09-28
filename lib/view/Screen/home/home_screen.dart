@@ -62,80 +62,77 @@ class HomeScreen extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.all(20),
                       alignment: Alignment.topCenter,
-                      height: Get.height * 0.40,
+                      height: Get.height * 0.25,
                       width: double.infinity,
                       decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage(
-                                Images.homeCard,
-                              ),
-                              fit: BoxFit.contain,
-                              scale: 100)),
+                        image: AssetImage(
+                          Images.homeCard,
+                        ),
+                        fit: BoxFit.contain,
+                      )),
                       child: Stack(children: [
-                        Positioned(
-                            left: 0,
-                            right: 0,
-                            top: Get.height * 0.1,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Ready to test your knowledge and\nchallenge others?',
-                                  textAlign: TextAlign.center,
-                                  style: poppinsRegular.copyWith(
-                                      fontSize: Dimensions.FONT_SIZE_LARGE,
-                                      color: Colors.white),
-                                ),
-                                const SizedBox(
-                                  height: Dimensions.PADDING_SIZE_EXTRA_SMALL,
-                                ),
-                                Text(
-                                  'Answer as much questions\ncorrectly within 2 minutes',
-                                  style: poppinsBold.copyWith(
-                                      fontSize:
-                                          Dimensions.FONT_SIZE_EXTRA_LARGE,
-                                      color: Colors.white),
-                                ),
-                                const SizedBox(
-                                  height: 12,
-                                ),
-                                InkWell(
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    height: 50,
-                                    width: 120,
-                                    decoration: const BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black12,
-                                          offset: Offset(3, 3),
-                                          blurRadius: 8,
-                                        ),
-                                      ],
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(
-                                            Dimensions.RADIUS_DEFAULT),
+                        Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Ready to test your knowledge and\nchallenge others?',
+                                textAlign: TextAlign.center,
+                                style: poppinsRegular.copyWith(
+                                    fontSize: Dimensions.FONT_SIZE_LARGE,
+                                    color: Colors.white),
+                              ),
+                              const SizedBox(
+                                height: Dimensions.PADDING_SIZE_EXTRA_SMALL,
+                              ),
+                              Text(
+                                'Answer as much questions\ncorrectly within 2 minutes',
+                                style: poppinsBold.copyWith(
+                                    fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                                    color: Colors.white),
+                              ),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              InkWell(
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  height: 50,
+                                  width: 120,
+                                  decoration: const BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black12,
+                                        offset: Offset(3, 3),
+                                        blurRadius: 8,
                                       ),
-                                    ),
-                                    child: Text(
-                                      'Quiz Me!',
-                                      style: poppinsBold.copyWith(
-                                          fontSize:
-                                              Dimensions.FONT_SIZE_EXTRA_LARGE,
-                                          color: Theme.of(context)
-                                              .secondaryHeaderColor),
+                                    ],
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(
+                                          Dimensions.RADIUS_DEFAULT),
                                     ),
                                   ),
-                                  onTap: () {
-                                    //ToDO: Here Will Start The game!
-                                    Get.toNamed(RouteHelper.getQuizRoute());
-                                    Get.find<QuizController>().attemptsUser();
-                                  },
+                                  child: Text(
+                                    'Quiz Me!',
+                                    style: poppinsBold.copyWith(
+                                        fontSize:
+                                            Dimensions.FONT_SIZE_EXTRA_LARGE,
+                                        color: Theme.of(context)
+                                            .secondaryHeaderColor),
+                                  ),
                                 ),
-                              ],
-                            ))
+                                onTap: () {
+                                  //ToDO: Here Will Start The game!
+                                  Get.toNamed(RouteHelper.getQuizRoute());
+                                  Get.find<QuizController>().attemptsUser();
+                                },
+                              ),
+                            ],
+                          ),
+                        )
                       ]),
                     ),
                   ],
