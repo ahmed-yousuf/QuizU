@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
 import 'package:lottie/lottie.dart';
-import 'package:quizu/controller/auth_controller.dart';
 import 'package:quizu/controller/quize_controller.dart';
 import 'package:quizu/controller/user_controller.dart';
 import 'package:quizu/helper/route_helper.dart';

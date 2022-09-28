@@ -22,7 +22,7 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   bool _stopTimer = false;
   late CountdownTimerController controller;
-  int endTime = DateTime.now().millisecondsSinceEpoch + 30000;
+  int endTime = DateTime.now().millisecondsSinceEpoch + 120000;
   final ScrollController _scrollController = ScrollController();
   final PageController _pageController = PageController();
   final quizControll = Get.find<QuizController>();
