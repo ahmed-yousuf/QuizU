@@ -1,16 +1,13 @@
-# quizu
+### Hi there 👋, this is be my Okoul challenge project in Flutter, I have done the project within Three Days Only I hope you like it 🥰.
+![](https://github.com/ahmed-yousuf/QuizU/blob/main/assets/images/Banner1.png?raw=true)
 
-A new Flutter project.
+I made this project to improve knowledge in Flutter, it allows you to create nice and simple app I ❤️ Flutter.
 
-## Getting Started
+- 🔭 I’m currently working as Flutter Developer. 
+- 🌱 I’m currently learning Laravel 😍. 
+- 💬 Ask me about Flutter how's Done! 😂 
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+[<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/github.svg' alt='github' height='40'>](https://github.com/ahmed07yousuf)  [<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg' alt='linkedin' height='40'>](https://www.linkedin.com/in/https://www.linkedin.com/in/ahmad-yousuf/)  [<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/instagram.svg' alt='instagram' height='40'>](https://www.instagram.com/https://www.instagram.com/ahmad07yousuf/)  [<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/twitter.svg' alt='twitter' height='40'>](https://twitter.com/https://twitter.com/ahmad07yousuf)  [<img src='https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/icloud.svg' alt='website' height='40'>](https://ahmed-yousuf.com)  
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Profile views](https://gpvc.arturio.dev/ahmed07yousuf)  
