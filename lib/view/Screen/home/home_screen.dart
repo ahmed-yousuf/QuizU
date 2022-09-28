@@ -55,6 +55,7 @@ class HomeScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                //Time
                                 Text(
                                   '$welcome,',
                                   style: poppinsMedium.copyWith(
