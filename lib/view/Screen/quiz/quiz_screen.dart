@@ -9,6 +9,7 @@ import 'package:quizu/helper/route_helper.dart';
 import 'package:quizu/util/dimensions.dart';
 import 'package:quizu/util/images.dart';
 import 'package:quizu/util/styles.dart';
+import 'package:quizu/view/Screen/home/bottom_nav.dart';
 import 'package:quizu/view/base/confirmation_dialog.dart';
 import 'package:quizu/view/base/custom_button.dart';
 import 'package:quizu/view/base/custom_loader.dart';
@@ -107,7 +108,8 @@ class _QuizScreenState extends State<QuizScreen> {
                       TextButton(
                         onPressed: () {
                           Get.find<QuizController>().attemptsUser();
-                          Get.offAllNamed(RouteHelper.initial);
+                          Get.offAllNamed(RouteHelper.getInitialRoute(),
+                              arguments: BottomBar(selectedIndex: 0));
                         },
                         child: Container(
                           alignment: Alignment.center,
@@ -229,7 +231,8 @@ class _QuizScreenState extends State<QuizScreen> {
                             stopTime = false;
                             _stopTimer = true;
                           });
-                          Get.offNamed(RouteHelper.initial);
+                          Get.offNamed(RouteHelper.getInitialRoute(),
+                              arguments: BottomBar(selectedIndex: 0));
                         },
                         child: Container(
                           alignment: Alignment.center,
