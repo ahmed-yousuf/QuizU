@@ -274,7 +274,8 @@ class _QuizScreenState extends State<QuizScreen> {
                     endTime = 0;
                     stopTime = false;
                     _stopTimer = true;
-                    Get.offAllNamed(RouteHelper.initial);
+                    Get.offAllNamed(RouteHelper.getInitialRoute(),
+                        arguments: BottomBar(selectedIndex: 0));
                   });
                 }),
             useSafeArea: false);
