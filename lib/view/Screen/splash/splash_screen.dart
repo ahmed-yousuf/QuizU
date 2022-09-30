@@ -13,6 +13,7 @@ import 'package:quizu/util/app_constants.dart';
 import 'package:quizu/util/dimensions.dart';
 import 'package:quizu/util/images.dart';
 import 'package:quizu/util/styles.dart';
+import 'package:quizu/view/Screen/home/bottom_nav.dart';
 import 'package:quizu/view/base/custom_button.dart';
 import 'package:quizu/view/base/custom_snackbar.dart';
 import 'package:quizu/view/base/custom_text_field.dart';
@@ -138,7 +139,9 @@ class _SplashScreenState extends State<SplashScreen> {
                                           value.message.toString(), context,
                                           isError: false);
                                       Get.offNamed(
-                                          RouteHelper.getInitialRoute());
+                                          RouteHelper.getInitialRoute(),
+                                          arguments:
+                                              BottomBar(selectedIndex: 0));
                                     } else {
                                       showCustomSnackBar(
                                           'Please Enter your name!!', context,
@@ -166,7 +169,8 @@ class _SplashScreenState extends State<SplashScreen> {
               );
             } else {
               Get.find<LeaderController>().topUserData();
-              Get.offNamed(RouteHelper.getInitialRoute());
+              Get.offNamed(RouteHelper.getInitialRoute(),
+                  arguments: BottomBar(selectedIndex: 0));
             }
           } else {
             Get.offNamed(RouteHelper.getSignInRoute('s'));

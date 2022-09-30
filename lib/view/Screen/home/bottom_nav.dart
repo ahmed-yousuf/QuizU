@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:quizu/util/images.dart';
 import 'package:quizu/view/Screen/home/home_screen.dart';
 import 'package:quizu/view/Screen/leaderboard/leaderboard_screen.dart';
 import 'package:quizu/view/Screen/profile/profile_screen.dart';
 
 class BottomBar extends StatefulWidget {
-  const BottomBar({Key? key}) : super(key: key);
+  int selectedIndex;
+  BottomBar({required this.selectedIndex});
 
   @override
   State<BottomBar> createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomBar> {
-  int _selectedIndex = 0;
   static final List<Widget> _wedgitOption = <Widget>[
     HomeScreen(),
-    const LeaderboardScreen(),
+    LeaderboardScreen(),
     const ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      widget.selectedIndex = index;
     });
   }
 
@@ -29,12 +30,12 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: _wedgitOption[_selectedIndex],
+        child: _wedgitOption[widget.selectedIndex],
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onItemTapped,
         elevation: 10,
-        currentIndex: _selectedIndex,
+        currentIndex: widget.selectedIndex,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         selectedItemColor: Theme.of(context).primaryColor,

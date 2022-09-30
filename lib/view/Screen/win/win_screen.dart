@@ -8,6 +8,7 @@ import 'package:quizu/controller/user_controller.dart';
 import 'package:quizu/helper/route_helper.dart';
 import 'package:quizu/util/images.dart';
 import 'package:quizu/util/styles.dart';
+import 'package:quizu/view/Screen/home/bottom_nav.dart';
 import 'package:quizu/view/base/custom_button.dart';
 import 'package:share/share.dart';
 
@@ -225,7 +226,8 @@ class _WinScreenState extends State<WinScreen> {
                       Get.find<QuizController>().setSelectedAnswer('');
                       Get.find<QuizController>().setSelectedIndex(0);
                       Get.find<QuizController>().reSetResult();
-                      Get.toNamed(RouteHelper.initial);
+                      Get.offAllNamed(RouteHelper.getInitialRoute(),
+                          arguments: BottomBar(selectedIndex: 2));
                     },
                     child: Text(
                       'Skip',
