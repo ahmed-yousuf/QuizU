@@ -57,7 +57,7 @@ class _QuizScreenState extends State<QuizScreen> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)), //this right here
               child: SizedBox(
-                height: 250,
+                height: Get.height * 0.350,
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Column(
@@ -167,6 +167,7 @@ class _QuizScreenState extends State<QuizScreen> {
       });
     } else {
       setState(() {
+        Get.find<QuizController>().resetScores();
         endTime = 0;
         stopTime = false;
         _stopTimer = true;
@@ -180,7 +181,7 @@ class _QuizScreenState extends State<QuizScreen> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)), //this right here
               child: SizedBox(
-                height: 250,
+                height: Get.height * 0.350,
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Column(
@@ -497,7 +498,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                                       Future.delayed(
                                                           Duration(
                                                               microseconds:
-                                                                  12400), () {
+                                                                  400), () {
                                                         quizContoller
                                                             .setSelectedAnswer(
                                                                 '');
@@ -557,7 +558,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                                       Future.delayed(
                                                           const Duration(
                                                               microseconds:
-                                                                  12400), () {
+                                                                  400), () {
                                                         quizContoller
                                                             .setSelectedAnswer(
                                                                 '');
@@ -621,7 +622,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                                       Future.delayed(
                                                           const Duration(
                                                               microseconds:
-                                                                  12400), () {
+                                                                  400), () {
                                                         quizContoller
                                                             .setSelectedAnswer(
                                                                 '');
@@ -680,7 +681,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                                       Future.delayed(
                                                           const Duration(
                                                               microseconds:
-                                                                  12400), () {
+                                                                  400), () {
                                                         quizContoller
                                                             .setSelectedAnswer(
                                                                 '');

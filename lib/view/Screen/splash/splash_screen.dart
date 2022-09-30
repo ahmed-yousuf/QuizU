@@ -195,7 +195,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_LARGE),
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  Image.asset(Images.logoName, width: 300),
+                  Image.asset(
+                      Get.isDarkMode ? Images.logoNameDark : Images.logoName,
+                      width: 300),
                   // Spacer(),
                 ]),
               ),

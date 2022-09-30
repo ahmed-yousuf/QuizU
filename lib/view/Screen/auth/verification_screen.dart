@@ -166,8 +166,11 @@ class _VerificationScreenState extends State<VerificationScreen> {
                                   //     .setUserName(value.name.toString());
                                   // authController
                                   //     .setUserNumber(value.mobile.toString());
+                                  bool checkNull = value.userStatus == null
+                                      ? false
+                                      : value.userStatus!.contains('new');
 
-                                  if (value.name == null) {
+                                  if (value.name == null || checkNull) {
                                     // setState(() {
                                     //   isClickedName = 0;
                                     // });

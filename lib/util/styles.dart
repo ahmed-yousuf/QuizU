@@ -31,8 +31,10 @@ final poppinsBlack = const TextStyle(
 final defaultPinTheme = PinTheme(
   width: 56,
   height: 56,
-  textStyle: const TextStyle(
-      fontSize: 20, color: Color(0xFF8270F6), fontWeight: FontWeight.w600),
+  textStyle: TextStyle(
+      fontSize: 20,
+      color: Get.isDarkMode ? Color(0xFFFF6DAA) : Color(0xFF8270F6),
+      fontWeight: FontWeight.w600),
   decoration: BoxDecoration(
     border: Border.all(
         color: Get.isDarkMode
@@ -43,7 +45,7 @@ final defaultPinTheme = PinTheme(
 );
 final focusedPinTheme = defaultPinTheme.copyDecorationWith(
   border: Border.all(
-    color: const Color(0xFF8270F6),
+    color: Get.isDarkMode ? Color(0xFFFF6DAA) : Color(0xFF8270F6),
   ),
   borderRadius: BorderRadius.circular(8),
 );
@@ -51,7 +53,7 @@ final focusedPinTheme = defaultPinTheme.copyDecorationWith(
 final submittedPinTheme = defaultPinTheme.copyWith(
   decoration: defaultPinTheme.decoration?.copyWith(
     color: Get.isDarkMode
-        ? Colors.grey[800]
+        ? Color(0xFFFF6DAA).withOpacity(0.1)
         : const Color(0xFF8270F6).withOpacity(0.1),
   ),
 );

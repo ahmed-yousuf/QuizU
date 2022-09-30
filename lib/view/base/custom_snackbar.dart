@@ -11,8 +11,8 @@ void showCustomSnackBar(String message, BuildContext context,
     showSimpleNotification(
       Text(
         message,
-        style:
-            poppinsMedium.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE),
+        style: poppinsMedium.copyWith(
+            fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE, color: Colors.white),
       ),
       position: NotificationPosition.top,
       background: isError ? Colors.red : Theme.of(context).secondaryHeaderColor,

@@ -49,6 +49,10 @@ class QuizController extends GetxController implements GetxService {
     _attempts = 0;
   }
 
+  void resetScores() {
+    _scores = 0;
+  }
+
   void saveScoreToLocalList({required String score, required time}) {
     final record = Record(record: score, time: time);
     addAndStoreRecord(record);

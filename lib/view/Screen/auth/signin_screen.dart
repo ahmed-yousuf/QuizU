@@ -41,7 +41,9 @@ class _SignInScreenState extends State<SignInScreen> {
                 horizontal: Dimensions.PADDING_SIZE_DEFAULT),
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Image.asset(Images.logoName, width: 250),
+              Image.asset(
+                  Get.isDarkMode ? Images.logoNameDark : Images.logoName,
+                  width: 250),
               const SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_LARGE),
               Text('sign in'.toUpperCase(),
                   style: poppinsMedium.copyWith(fontSize: 30)),

@@ -36,7 +36,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -84,7 +83,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         children: [
                             Container(
                               alignment: Alignment.bottomCenter,
-                              height: Get.height * 0.75,
+                              height: Get.height * 0.80,
                               width: Get.width,
                               decoration: BoxDecoration(
                                 color: Theme.of(context).cardColor,
@@ -590,8 +589,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 // height: 80,
                                                 width: 60,
                                                 decoration: BoxDecoration(
-                                                  color: lController
-                                                      .listColor[index],
+                                                  color: lController.listColor[
+                                                      index %
+                                                          lController.listColor
+                                                              .length],
                                                   borderRadius:
                                                       const BorderRadius.all(
                                                           Radius.circular(8)),
@@ -622,9 +623,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 decoration: BoxDecoration(
                                                     shape: BoxShape.circle,
                                                     border: Border.all(
-                                                        width: 5,
-                                                        color: lController
-                                                            .listColor[index])),
+                                                      width: 5,
+                                                      color:
+                                                          lController.listColor[
+                                                              index %
+                                                                  lController
+                                                                      .listColor
+                                                                      .length],
+                                                    )),
                                                 child: Text(
                                                   reverselist[index]
                                                       .record

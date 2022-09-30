@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'dart:async';
 import 'package:lottie/lottie.dart';
 import 'package:quizu/controller/quize_controller.dart';
 import 'package:quizu/controller/user_controller.dart';
@@ -20,25 +19,25 @@ class WinScreen extends StatefulWidget {
 }
 
 class _WinScreenState extends State<WinScreen> {
-  bool _isLoading1 = false;
-  bool _isLoading2 = false;
+  // bool _isLoading1 = false;
+  // bool _isLoading2 = false;
   DateTime now = DateTime.now();
 
-  void onTime() {
-    Future.delayed(const Duration(seconds: 1), () {
-      setState(() {
-        _isLoading1 = true;
-      });
-    });
-  }
+  // void onTime() {
+  //   Future.delayed(const Duration(seconds: 1), () {
+  //     setState(() {
+  //       _isLoading1 = true;
+  //     });
+  //   });
+  // }
 
-  void onSecondTime() {
-    Future.delayed(const Duration(seconds: 3), () {
-      setState(() {
-        _isLoading2 = true;
-      });
-    });
-  }
+  // void onSecondTime() {
+  //   Future.delayed(const Duration(seconds: 3), () {
+  //     setState(() {
+  //       _isLoading2 = true;
+  //     });
+  //   });
+  // }
 
   @override
   void initState() {
@@ -48,8 +47,8 @@ class _WinScreenState extends State<WinScreen> {
     Get.find<QuizController>().saveScoreToLocalList(
         score: '${Get.find<QuizController>().scores}',
         time: DateFormat.jm().format(now) + " " + DateFormat.yMd().format(now));
-    onTime();
-    onSecondTime();
+    // onTime();
+    // onSecondTime();
     super.initState();
   }
 
@@ -83,12 +82,16 @@ class _WinScreenState extends State<WinScreen> {
                 Positioned(
                   right: 0,
                   left: 0,
-                  child: Lottie.asset(Images.win, animate: _isLoading2),
+                  child: Lottie.asset(
+                    Images.win,
+                  ),
                 ),
                 Positioned(
                   right: 0,
                   left: 0,
-                  child: Lottie.asset(Images.win2, animate: _isLoading1),
+                  child: Lottie.asset(
+                    Images.win2,
+                  ),
                 ),
                 Positioned(
                   right: 0,

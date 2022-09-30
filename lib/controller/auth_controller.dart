@@ -1,13 +1,11 @@
 // ignore_for_file: prefer_final_fields
 
 import 'dart:convert';
-import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:quizu/controller/quize_controller.dart';
 import 'package:quizu/controller/user_controller.dart';
-import 'package:quizu/data/api/client_helper.dart';
 import 'package:quizu/data/model/user_info_model.dart';
 import 'package:quizu/data/model/user_model.dart';
 import 'package:quizu/data/response/response_model.dart';

@@ -1,6 +1,7 @@
 class Images {
   static const String logo = 'assets/images/logo.png';
   static const String logoName = 'assets/images/logo_name.png';
+  static const String logoNameDark = 'assets/images/logo_name_dark.png';
   static const String onboard_1 = 'assets/images/Onboarding-1.png';
   static const String onboard_2 = 'assets/images/Onboarding-2.png';
   static const String onboard_3 = 'assets/images/Onboarding-3.png';
